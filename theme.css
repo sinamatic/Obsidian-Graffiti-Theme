@@ -102,25 +102,46 @@
   --bullet-color-7: rgb(178, 102, 255); /* Lila */
 }
 
-/* Vorschauansicht */
-ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after,
-.markdown-preview-view ul ul:nth-of-type(1) > li::before {
+ul {
+  list-style: none; /* Remove default bullets */
+}
+
+
+/* Definiere die neuen Bulletpoints für jede Ebene */
+ul > li::before,
+ul ul > li::before,
+ul ul ul > li::before,
+ul ul ul ul > li::before,
+ul ul ul ul ul > li::before,
+ul ul ul ul ul ul > li::before,
+ul ul ul ul ul ul ul > li::before {
+  content: '';
+  display: inline-block;
+  position: absolute; /* Ermöglicht genauere Positionierung */
+  margin-left: 0; /* Verhindert zusätzliches Einrücken */
+  transform: translate(0px, 0px); /* Position der Bulletpoints feinjustieren */
+}
+
+/* Ebene 1 */
+ul > li::before {
   height: 5px;
   width: 5px;
   border-radius: 50%;
   background-color: var(--bullet-color-1);
+  transform: translate(-16px, 9px); /* Position der Bulletpoints Ebene 1 */
 }
 
-ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after,
-.markdown-preview-view ul ul:nth-of-type(2) > li::before {
+/* Ebene 2 */
+ul ul > li::before {
   height: 1px;
   width: 7px;
   border-radius: 0%;
   background-color: var(--bullet-color-2);
+  transform: translate(-16px, 9px);
 }
 
-ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:after,
-.markdown-preview-view ul ul:nth-of-type(3) > li::before {
+/* Ebene 3 */
+ul ul ul > li::before {
   height: 4px;
   width: 4px;
   background-color: transparent;
@@ -128,26 +149,29 @@ ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:a
   border-style: solid;
   border-radius: 50%;
   border-width: 1px;
+  transform: translate(-16px, 9px);
 }
 
-ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-4 .list-bullet:after,
-.markdown-preview-view ul ul:nth-of-type(4) > li::before {
+/* Ebene 4 */
+ul ul ul ul > li::before {
   height: 5px;
   width: 5px;
   border-radius: 0%;
   background-color: var(--bullet-color-4);
+  transform: translate(-16px, 9px);
 }
 
-ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-5 .list-bullet:after,
-.markdown-preview-view ul ul:nth-of-type(5) > li::before {
+/* Ebene 5 */
+ul ul ul ul ul > li::before {
   height: 1px;
   width: 7px;
   border-radius: 0%;
   background-color: var(--bullet-color-5);
+  transform: translate(-16px, 9px);
 }
 
-ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-6 .list-bullet:after,
-.markdown-preview-view ul ul:nth-of-type(6) > li::before {
+/* Ebene 6 */
+ul ul ul ul ul ul > li::before {
   height: 4px;
   width: 4px;
   background-color: transparent;
@@ -155,12 +179,128 @@ ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-6 .list-bullet:a
   border-style: solid;
   border-radius: 0%;
   border-width: 1px;
+  transform: translate(-16px, 9px);
 }
 
-ul li::before, .markdown-source-view.mod-cm6 .HyperMD-list-line-7 .list-bullet:after,
-.markdown-preview-view ul ul:nth-of-type(7) > li::before {
+/* Ebene 7 */
+ul ul ul ul ul ul ul > li::before {
   height: 2px;
   width: 2px;
   border-radius: 50%;
   background-color: var(--bullet-color-7);
+  transform: translate(-16px, 9px);
+}
+
+/* Anpassung des Abstands innerhalb der Liste */
+ul > li,
+ul ul > li,
+ul ul ul > li,
+ul ul ul ul > li,
+ul ul ul ul ul > li,
+ul ul ul ul ul ul > li,
+ul ul ul ul ul ul ul > li {
+  position: relative; /* Erforderlich für die Positionierung der Bulletpoints */
+  padding-left: 20px; /* Platz für Bulletpoints schaffen */
+}
+
+
+/* Tabelle */
+
+/* Entfernt die äußeren Ränder der Tabelle */
+table {
+  border: none;
+  border-collapse: collapse;
+}
+
+/* Horizontale Linien: 2px gelb */
+table tr {
+  border-bottom: 2px solid yellow;
+}
+
+/* Vertikale Linien: 1px grau */
+table td, table th {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
+/* Entfernt die äußersten vertikalen Linien */
+table tr td:first-child, table tr th:first-child {
+  border-left: none;
+}
+
+table tr td:last-child, table tr th:last-child {
+  border-right: none;
+}
+
+
+/* Farben für Ordner in Obsidian */
+/* Farben für Ordner in Obsidian */
+.nav-files-container > div > .nav-folder:nth-child(9n+2) > .tree-item-self {
+  background-color: var(--color-red);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+2) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-red);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+3) > .tree-item-self {
+  background-color: var(--color-orange);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+3) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-orange);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+4) > .tree-item-self {
+  background-color: var(--color-yellow-light);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+4) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-yellow-light);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+5) > .tree-item-self {
+  background-color: var(--color-green);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+5) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-green);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+6) > .tree-item-self {
+  background-color: var(--color-sea-green);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+6) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-sea-green);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+7) > .tree-item-self {
+  background-color: var(--color-cyan);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+7) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-cyan);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+8) > .tree-item-self {
+  background-color: var(--color-frost);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+8) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-frost);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+9) > .tree-item-self {
+  background-color: var(--color-blue);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+9) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-blue);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+10) > .tree-item-self {
+  background-color: var(--color-purple);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+10) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-purple);
+}
+
+.nav-files-container > div > .nav-folder:nth-child(9n+11) > .tree-item-self {
+  background-color: var(--color-salmon);
+}
+.nav-files-container > div > .nav-folder:nth-child(9n+11) .tree-item-children {
+  --nav-indentation-guide-color: var(--color-salmon);
 }
